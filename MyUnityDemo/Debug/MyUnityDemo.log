@@ -1,0 +1,32 @@
+﻿Build started 3/3/2015 11:54:28 PM.
+     1>Project "C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\MyUnityDemo.vcxproj" on node 2 (Build target(s)).
+     1>PreBuildEvent:
+         echo UnityInstallationDir 'C:\Program Files (x86)\Unity\Editor'
+         echo UnityProjectDir 'C:\Users\pedrofv\Documents\MyUnityDemo'
+         echo Copying assemblies...
+         copy /Y "C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\Unprocessed\*" "C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\"
+         echo Running AssemblyConverter...
+         "C:\Program Files (x86)\Unity\Editor\Data\PlaybackEngines\metrosupport\Tools\AssemblyConverter.exe" -platform=wsa81 "C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\\Assembly-UnityScript.dll" "C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\\UnityEngine.dll" "C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\\UnityEngine.UI.dll" "C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\\WinRTLegacy.dll"
+         echo AssemblyConverter done.
+         
+         :VCEnd
+         UnityInstallationDir 'C:\Program Files (x86)\Unity\Editor'
+         UnityProjectDir 'C:\Users\pedrofv\Documents\MyUnityDemo'
+         Copying assemblies...
+         C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\Unprocessed\Assembly-UnityScript.dll
+         C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\Unprocessed\Assembly-UnityScript.pdb
+         C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\Unprocessed\UnityEngine.dll
+         C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\Unprocessed\UnityEngine.pdb
+         C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\Unprocessed\UnityEngine.UI.dll
+         C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\Unprocessed\UnityEngine.UI.pdb
+         C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\Unprocessed\WinRTLegacy.dll
+                 7 file(s) copied.
+         Running AssemblyConverter...
+         AssemblyConverter done.
+       Link:
+         MyUnityDemo.vcxproj -> C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Debug\MyUnityDemo\MyUnityDemo.exe
+     1>Done Building Project "C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\MyUnityDemo\MyUnityDemo.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.00
