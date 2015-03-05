@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\UnityCommon.props" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Master|ARM">
+        <Configuration>Master</Configuration>
+        <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Master|Win32">
+        <Configuration>Master</Configuration>
+        <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{d6208586-8638-4be1-bd2c-9a55eec34747}</ProjectGuid>
+    <RootNamespace>Template</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <AppContainerApplication>true</AppContainerApplication>
+    <ApplicationType>Windows Store</ApplicationType>
+    <ApplicationTypeRevision>8.1</ApplicationTypeRevision>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Master|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Master|ARM'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\ImageContentTask.props" />
+  <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\MeshContentTask.props" />
+  <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\ShaderGraphContentTask.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Master|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Master|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <PackageCertificateKeyFile>MetroTestCertificate.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+   <ClCompile>
+       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+       <PreprocessorDefinitions>_UNICODE;UNICODE;NETFX_CORE;UNITY_METRO;UNITY_METRO_8_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+   </ClCompile>
+  <PreBuildEvent>
+        <Command>echo UnityInstallationDir '$(UnityInstallationDir)'
+echo UnityProjectDir '$(UnityProjectDir)'
+echo Copying assemblies...
+copy /Y "$(ProjectDir)Unprocessed\*" "$(ProjectDir)"
+echo Running AssemblyConverter...
+"$(UnityWSAPlayerDir)\Tools\AssemblyConverter.exe" -platform=wsa81 "$(ProjectDir)\Assembly-CSharp.dll" "$(ProjectDir)\Assembly-UnityScript.dll" "$(ProjectDir)\UnityEngine.dll" "$(ProjectDir)\UnityEngine.UI.dll" "$(ProjectDir)\WinRTLegacy.dll"
+echo AssemblyConverter done.
+</Command>
+  </PreBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+     <ClCompile>
+       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+       <PreprocessorDefinitions>_UNICODE;UNICODE;NETFX_CORE;UNITY_METRO;UNITY_METRO_8_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+     </ClCompile>
+  <PreBuildEvent>
+        <Command>echo UnityInstallationDir '$(UnityInstallationDir)'
+echo UnityProjectDir '$(UnityProjectDir)'
+echo Copying assemblies...
+copy /Y "$(ProjectDir)Unprocessed\*" "$(ProjectDir)"
+echo Running AssemblyConverter...
+"$(UnityWSAPlayerDir)\Tools\AssemblyConverter.exe" -platform=wsa81 "$(ProjectDir)\Assembly-CSharp.dll" "$(ProjectDir)\Assembly-UnityScript.dll" "$(ProjectDir)\UnityEngine.dll" "$(ProjectDir)\UnityEngine.UI.dll" "$(ProjectDir)\WinRTLegacy.dll"
+echo AssemblyConverter done.
+</Command>
+  </PreBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Master|ARM'">
+     <ClCompile>
+       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+       <PreprocessorDefinitions>_UNICODE;UNICODE;NETFX_CORE;UNITY_METRO;UNITY_METRO_8_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+     </ClCompile>
+     <PreBuildEvent>
+        <Command>echo UnityInstallationDir '$(UnityInstallationDir)'
+echo UnityProjectDir '$(UnityProjectDir)'
+echo Copying assemblies...
+copy /Y "$(ProjectDir)Unprocessed\*" "$(ProjectDir)"
+echo Running AssemblyConverter...
+"$(UnityWSAPlayerDir)\Tools\AssemblyConverter.exe" -platform=wsa81 "$(ProjectDir)\Assembly-CSharp.dll" "$(ProjectDir)\Assembly-UnityScript.dll" "$(ProjectDir)\UnityEngine.dll" "$(ProjectDir)\UnityEngine.UI.dll" "$(ProjectDir)\WinRTLegacy.dll"
+echo AssemblyConverter done.
+</Command>
+     </PreBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+     <ClCompile>
+       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+       <PreprocessorDefinitions>_UNICODE;UNICODE;NETFX_CORE;UNITY_METRO;UNITY_METRO_8_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+     </ClCompile>
+  <PreBuildEvent>
+        <Command>echo UnityInstallationDir '$(UnityInstallationDir)'
+echo UnityProjectDir '$(UnityProjectDir)'
+echo Copying assemblies...
+copy /Y "$(ProjectDir)Unprocessed\*" "$(ProjectDir)"
+echo Running AssemblyConverter...
+"$(UnityWSAPlayerDir)\Tools\AssemblyConverter.exe" -platform=wsa81 "$(ProjectDir)\Assembly-CSharp.dll" "$(ProjectDir)\Assembly-UnityScript.dll" "$(ProjectDir)\UnityEngine.dll" "$(ProjectDir)\UnityEngine.UI.dll" "$(ProjectDir)\WinRTLegacy.dll"
+echo AssemblyConverter done.
+</Command>
+  </PreBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+     <ClCompile>
+       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+       <PreprocessorDefinitions>_UNICODE;UNICODE;NETFX_CORE;UNITY_METRO;UNITY_METRO_8_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+     </ClCompile>
+  <PreBuildEvent>
+        <Command>echo UnityInstallationDir '$(UnityInstallationDir)'
+echo UnityProjectDir '$(UnityProjectDir)'
+echo Copying assemblies...
+copy /Y "$(ProjectDir)Unprocessed\*" "$(ProjectDir)"
+echo Running AssemblyConverter...
+"$(UnityWSAPlayerDir)\Tools\AssemblyConverter.exe" -platform=wsa81 "$(ProjectDir)\Assembly-CSharp.dll" "$(ProjectDir)\Assembly-UnityScript.dll" "$(ProjectDir)\UnityEngine.dll" "$(ProjectDir)\UnityEngine.UI.dll" "$(ProjectDir)\WinRTLegacy.dll"
+echo AssemblyConverter done.
+</Command>
+  </PreBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Master|Win32'">
+     <ClCompile>
+       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
+       <PreprocessorDefinitions>_UNICODE;UNICODE;NETFX_CORE;UNITY_METRO;UNITY_METRO_8_1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+     </ClCompile>
+  <PreBuildEvent>
+        <Command>echo UnityInstallationDir '$(UnityInstallationDir)'
+echo UnityProjectDir '$(UnityProjectDir)'
+echo Copying assemblies...
+copy /Y "$(ProjectDir)Unprocessed\*" "$(ProjectDir)"
+echo Running AssemblyConverter...
+"$(UnityWSAPlayerDir)\Tools\AssemblyConverter.exe" -platform=wsa81 "$(ProjectDir)\Assembly-CSharp.dll" "$(ProjectDir)\Assembly-UnityScript.dll" "$(ProjectDir)\UnityEngine.dll" "$(ProjectDir)\UnityEngine.UI.dll" "$(ProjectDir)\WinRTLegacy.dll"
+echo AssemblyConverter done.
+</Command>
+  </PreBuildEvent>
+   </ItemDefinitionGroup>
+   <ItemGroup>
+   </ItemGroup>
+   <ItemGroup>
+   </ItemGroup>
+   <ItemGroup>
+     <AppxManifest Include="Package.appxmanifest">
+       <SubType>Designer</SubType>
+     </AppxManifest>
+     <None Include="MetroTestCertificate.pfx" />
+   </ItemGroup>
+   <ItemGroup>
+   </ItemGroup>
+   <ItemGroup>
+   </ItemGroup>
+   <ItemGroup>
+		    <None Include="..\Players\Windows81\$(PlatformShortName)\$(Configuration)\UnityEngineProxy.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+   </ItemGroup>
+   <ItemGroup>
+		    <Reference Include="UnityPlayer">
+      <HintPath>..\Players\Windows81\$(PlatformShortName)\$(Configuration)\UnityPlayer.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+    <Reference Include="WinRTBridge">
+      <HintPath>..\Players\Windows81\$(PlatformShortName)\$(Configuration)\WinRTBridge.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+    <Reference Include="BridgeInterface">
+      <HintPath>..\Players\Windows81\$(PlatformShortName)\$(Configuration)\BridgeInterface.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+    <Reference Include="UnityEngineDelegates">
+      <HintPath>..\Players\Windows81\$(PlatformShortName)\$(Configuration)\UnityEngineDelegates.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+   </ItemGroup>
+   <ItemGroup>
+      	<ApplicationDefinition Include="App.xaml" >
+		<DeploymentContent>true</DeploymentContent>
+	</ApplicationDefinition>
+	<CLCompile Include="App.xaml.cpp" >
+		 <DependentUpon>App.xaml</DependentUpon>
+	</CLCompile>
+	<CLInclude Include="App.xaml.h" >
+		 <DependentUpon>App.xaml</DependentUpon>
+	</CLInclude>
+	<None Include="Assembly-CSharp.dll" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="Assembly-CSharp.pdb" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="Assembly-UnityScript.dll" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="Assembly-UnityScript.pdb" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<Page Include="MainPage.xaml" >
+		<SubType>Designer</SubType>
+	</Page>
+	<CLCompile Include="MainPage.xaml.cpp" >
+		 <DependentUpon>MainPage.xaml</DependentUpon>
+	</CLCompile>
+	<CLInclude Include="MainPage.xaml.h" >
+		 <DependentUpon>MainPage.xaml</DependentUpon>
+	</CLInclude>
+	<CLCompile Include="pch.cpp" >
+		<PrecompiledHeader>Create</PrecompiledHeader>
+	</CLCompile>
+	<CLInclude Include="pch.h" >
+	</CLInclude>
+	<None Include="UnityEngine.dll" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="UnityEngine.pdb" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="UnityEngine.UI.dll" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="UnityEngine.UI.pdb" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="WinRTLegacy.dll" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<Image Include="Assets\MediumTile.scale-100.png" >
+	</Image>
+	<Image Include="Assets\SmallLogo.scale-100.png" >
+	</Image>
+	<Image Include="Assets\SplashScreen.scale-100.png" >
+	</Image>
+	<Image Include="Assets\StoreLogo.scale-100.png" >
+	</Image>
+	<Image Include="Assets\WideTile.scale-100.png" >
+	</Image>
+	<None Include="Data\mainData" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="Data\managedAssemblies.txt" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="Data\PlayerConnectionConfigFile" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="Data\sharedassets0.assets" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="Data\Resources\unity default resources" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+	<None Include="Data\Resources\unity_builtin_extra" >
+		<DeploymentContent>true</DeploymentContent>
+	</None>
+
+   </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\ImageContentTask.targets" />
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\MeshContentTask.targets" />
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\ShaderGraphContentTask.targets" />
+  </ImportGroup>
+</Project>
