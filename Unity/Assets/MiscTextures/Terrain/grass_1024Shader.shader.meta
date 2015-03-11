@@ -1,0 +1,8 @@
+fileFormatVersion: 2
+guid: be73571bfa0ea5b4cb9effbf4830b483
+labels:
+- Terrain
+ShaderImporter:
+  defaultTextures:
+  - _MainTex: {fileID: 2800000, guid: c3c1adebeeeb1de4cb6bc107aa9255da, type: 3}
+  userData: 
