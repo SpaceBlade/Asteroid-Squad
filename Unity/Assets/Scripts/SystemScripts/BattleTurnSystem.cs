@@ -41,7 +41,6 @@ public class BattleTurnSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float remaining = Time.deltaTime;
 		remainingTurnTime -= Time.deltaTime;
 		if (remainingTurnTime < 0) {
 			remainingTurnTime = 30.0f;
@@ -49,7 +48,7 @@ public class BattleTurnSystem : MonoBehaviour {
 		TimeRemainingText.text = string.Format ("{0:n2} seconds", remainingTurnTime);
 	}
 
-	public void EndPlayerturn()
+	public void SwitchActivePlayer()
 	{
 		// Check if teams defined
 		if (battleSquads.Count > 0) {
@@ -63,5 +62,14 @@ public class BattleTurnSystem : MonoBehaviour {
 			pis.targetPlayer = squadAlpha[activePlayer];
 			MainCamera.GetComponent<CameraController>().TrackedPlayer = pis.targetPlayer;
 		}
+	}
+
+	public void EndPlayerturn()
+	{
+	}
+
+	public void ResetTurn()
+	{
+		// Reset timer of all objects
 	}
 }

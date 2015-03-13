@@ -35,20 +35,26 @@ public class PlayerInputScript : MonoBehaviour {
 		}
 
 		// Switch player turn
-		if (Input.GetKey (KeyCode.Tab)) {
-				BattleTurn.EndPlayerturn();
+		if (Input.GetKeyDown (KeyCode.Tab)) {
+			BattleTurn.SwitchActivePlayer();
 		}
 
-		// Fire
-		if (Input.GetKey (KeyCode.Space)) {
-			Debug.Log("Player: " + targetPlayer.name + " Fire!");
-			GameObject projectile = GameObject.Find("CubeProjectile");
-			projectile.GetComponent<MeshRenderer>().enabled = true;
+		// If player can shoot
+		if (targetPlayer.GetComponent<SquadStats> ().CanShoot ()) {
+			// Fire
+			if (Input.GetKey (KeyCode.Space)) {
+				Debug.Log ("Player: " + targetPlayer.name + " Fire!");
+				GameObject projectile = GameObject.Find ("CubeProjectile");
+				projectile.GetComponent<MeshRenderer> ().enabled = true;
 
-			projectile.GetComponent<Rigidbody>().AddForce(targetPlayer.GetComponent<Rigidbody>().velocity * 5.0f);
+				projectile.GetComponent<Rigidbody> ().AddForce (targetPlayer.GetComponent<Rigidbody> ().velocity * 5.0f);
+			}
 		}
 
-		// rigidbody.AddForce (movement * PlayerSpeed * Time.deltaTime);
-		targetPlayer.transform.position += movement;
+		// If player can move
+		if (targetPlayer.GetComponent<SquadStats> ().CanMove ()) {
+			// rigidbody.AddForce (movement * PlayerSpeed * Time.deltaTime);
+			targetPlayer.transform.position += movement;
+		}
 	}
 }
