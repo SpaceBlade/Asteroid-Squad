@@ -11,6 +11,9 @@ public class BattleTurnSystem : MonoBehaviour {
 	// Turn camera
 	public GameObject MainCamera;
 
+	// Map
+	public GameObject GameMap;
+
 	// Private objects
 	private Dictionary<string, GameObject[]> battleSquads;
 	private PlayerInputScript pis;
@@ -31,10 +34,10 @@ public class BattleTurnSystem : MonoBehaviour {
 			// start first player to move
 			pis.targetPlayer = squadAlpha[activePlayer];
 			// Create copy
-			GameObject dupe = (GameObject)GameObject.Instantiate(squadAlpha[activePlayer]);
+			/* GameObject dupe = (GameObject)GameObject.Instantiate(squadAlpha[activePlayer]);
 			dupe.transform.position += new Vector3(20.0f, 0.0f, 50.0f);
 			dupe.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-
+			*/
 			MainCamera.GetComponent<CameraController>().TrackedPlayer = pis.targetPlayer;
 		}
 	}

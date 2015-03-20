@@ -48,6 +48,13 @@ public class PlayerInputScript : MonoBehaviour {
 				projectile.GetComponent<MeshRenderer> ().enabled = true;
 
 				projectile.GetComponent<Rigidbody> ().AddForce (targetPlayer.GetComponent<Rigidbody> ().velocity * 5.0f);
+
+				// Enable FireRange objects
+
+				// GameObject fire = targetPlayer.GetComponent<FireRange>();
+				// fire.light.enabled = true;
+				// fire.BoxCollider.enabled = true;
+
 			}
 		}
 
