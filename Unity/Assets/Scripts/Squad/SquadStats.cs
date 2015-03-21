@@ -14,10 +14,7 @@ public class SquadStats : MonoBehaviour {
 	public ushort Luck;
 	public ushort Level;
 
-	// Stats for turn management
-	private float remainingTime;
-	private bool canMove;
-	private bool canShoot;
+
 
 	// Use this for initialization
 	void Start () {
@@ -43,33 +40,11 @@ public class SquadStats : MonoBehaviour {
 		Luck = 2;			// Luck modifier
 		Level = 1;			// Player level
 
-		// Turn stats
-		remainingTime = ActionTime;	// remaining time in turn
-		canMove = true;
-		canShoot = true;
+
 	}
 
-	// Enable movement
-	public void ToggleMovement(bool enable)
+	// Increase stats due to XP
+	public void LevelUp()
 	{
-		canMove = enable;
-	}
-
-	// Enable shooting
-	public void ToggleShooting(bool enable)
-	{
-		canShoot = enable;
-	}
-
-	// Return if player can shoot
-	public bool CanShoot()
-	{
-		return canShoot;
-	}
-
-	// Return if player can move
-	public bool CanMove()
-	{
-		return canMove;
 	}
 }

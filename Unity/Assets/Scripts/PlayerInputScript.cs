@@ -40,7 +40,7 @@ public class PlayerInputScript : MonoBehaviour {
 		}
 
 		// If player can shoot
-		if (targetPlayer.GetComponent<SquadStats> ().CanShoot ()) {
+		if (targetPlayer.GetComponent<SquadMemberTurn> ().CanShoot ()) {
 			// Fire
 			if (Input.GetKey (KeyCode.Space)) {
 				Debug.Log ("Player: " + targetPlayer.name + " Fire!");
@@ -59,7 +59,7 @@ public class PlayerInputScript : MonoBehaviour {
 		}
 
 		// If player can move
-		if (targetPlayer.GetComponent<SquadStats> ().CanMove ()) {
+		if (targetPlayer.GetComponent<SquadMemberTurn> ().CanMove ()) {
 			// rigidbody.AddForce (movement * PlayerSpeed * Time.deltaTime);
 			targetPlayer.transform.position += movement;
 		}
