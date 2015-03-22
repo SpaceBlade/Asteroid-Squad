@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 public class BattleTurnSystem : MonoBehaviour {
 	// Squads
-	public GameObject[] battleSquads;
+	public GameObject[] SquadAlpha;	// Player squad
+	public GameObject[] SquadBeta;	// NPC squad
+	public GameObject[] SquadGamma;	// NPC squad 2
 
 	// Turn
 	public float TurnTimer;
@@ -31,9 +33,10 @@ public class BattleTurnSystem : MonoBehaviour {
 		pis = GetComponent<PlayerInputScript> ();
 
 		// If any members have been added to squad then add to dictionary
-		if (battleSquads != null && battleSquads.Length > 0) {
+		if (SquadAlpha != null && SquadAlpha.Length > 0) {
 			// start first player to move
-			pis.targetPlayer = battleSquads[0].GetComponent<SquadTeam>().SquadMembers[activePlayer];
+			pis.targetPlayer = SquadAlpha[activePlayer];
+			SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>().IsActiveSquaddie = true;
 
 			// Create copy
 			/* GameObject dupe = (GameObject)GameObject.Instantiate(squadAlpha[activePlayer]);
@@ -42,6 +45,8 @@ public class BattleTurnSystem : MonoBehaviour {
 			*/
 			MainCamera.GetComponent<CameraController>().TrackedPlayer = pis.targetPlayer;
 		}
+
+		ResetTurn ();
 	}
 	
 	// Update is called once per frame
@@ -62,7 +67,7 @@ public class BattleTurnSystem : MonoBehaviour {
 	public void SwitchActivePlayer()
 	{
 		// Check if teams defined
-		if (battleSquads.Length > 0) {
+		if (SquadAlpha.Length > 0) {
 			/*
 			 // Check if all players in team have had a turn
 			if(++activePlayer >= battleSquads["squadAlpha"].Length)
@@ -85,31 +90,32 @@ public class BattleTurnSystem : MonoBehaviour {
 	{
 		// Execute turn actions
 
-		// Check if all players in a squad are dead
-		bool squadAlive = false;
-		// for (int sqIx = 0; sqIx < battleSquads.Length; sqIx++) {
-		for (int sqIx = 0; sqIx < 1; sqIx++) {
-			GameObject[] squad = battleSquads[sqIx].GetComponent<SquadTeam>().SquadMembers;
-			for(int squaddie = 0; squaddie < squad.Length; squaddie++)
-			{
-				// check if alive
-				if(squad[squaddie].GetComponent<SquadStats>().Health > 0)
-				{
-					// Check if other squad is alive
-					if(squadAlive)
-					{
-						// Reset Turn at the end
-						ResetTurn ();
-					}
 
-					squadAlive = true;
-					break;
+		// check if alive
+		if (IsSquadAlive (SquadAlpha) && (IsSquadAlive (SquadBeta) || IsSquadAlive (SquadGamma))) {
+			// Update Squads
+
+			ResetTurn();
+		} else {
+			// End Battle
+			EndBattle ();
+		}
+	}
+
+	// Check if a squad has members alive 
+	private bool IsSquadAlive(GameObject [] squad)
+	{
+		// Check if all players in a squad are dead
+		if (squad != null || squad.Length > 0) {
+			for(int ix = 0; ix < squad.Length; ix++){
+				if(squad[ix].GetComponent<SquadStats>().Health > 0)
+				{
+					return true;
 				}
 			}
 		}
-
-		// End Battle
-		EndBattle ();
+		
+		return false;
 	}
 
 	// Reset turn
@@ -122,7 +128,6 @@ public class BattleTurnSystem : MonoBehaviour {
 			var squadTurn = squadmates[i].GetComponent<SquadMemberTurn>();
 			if(squadTurn.IsAlive)
 			{
-				squadTurn.ToggleMovement(true);
 				squadTurn.ResetTurnTime();
 			}
 		}

@@ -27,14 +27,14 @@ public class SquadMemberTurn : MonoBehaviour {
 		if (IsActiveSquaddie) {
 			remainingTime -= Time.deltaTime;
 		}
-		if (playerStats.ActionTime < 0) {
-			playerStats.ActionTime = 0.0f;
+		if (remainingTime < 0) {
+			remainingTime = 0.0f;
 
 			// Mark as unable to move
 			canMove = false;
 		}
 
-		SquadTextBox.text = string.Format ("{0:n2} seconds", playerStats.ActionTime);
+		SquadTextBox.text = string.Format ("{0:n2} seconds", remainingTime);
 	}
 
 	// Enable movement
@@ -66,6 +66,7 @@ public class SquadMemberTurn : MonoBehaviour {
 	{
 		// Check for any ill effects
 		float timeMod = 0;
+		canMove = true;
 
 		// Update time
 		remainingTime = playerStats.ActionTime - timeMod;
