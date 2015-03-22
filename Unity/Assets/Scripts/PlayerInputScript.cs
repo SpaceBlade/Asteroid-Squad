@@ -34,7 +34,8 @@ public class PlayerInputScript : MonoBehaviour {
 		//}
 		float moveX = Input.GetAxis ("Horizontal");
 		float moveY = Input.GetAxis ("Vertical");
-		Vector3 movement = new Vector3 (moveX, 0.0f, moveY) * PlayerSpeed * Time.deltaTime;
+		Vector3 movement = transform.forward * moveY * PlayerSpeed * Time.deltaTime;
+		Vector3 rotation = new Vector3 (0.0f, moveX, 0.0f) * Mathf.PI * 20 * Time.deltaTime;
 		
 		// Jump
 		if(Input.GetKey(KeyCode.Return))
@@ -63,9 +64,11 @@ public class PlayerInputScript : MonoBehaviour {
 			}
 		}
 		
-		// If player can move
+		// If player can Move/Rotate
+		if (SquaddieTurn.CanRotate()) {
+			transform.Rotate (rotation);	
+		}
 		if (SquaddieTurn.CanMove ()) {
-			// rigidbody.AddForce (movement * PlayerSpeed * Time.deltaTime);
 			transform.position += movement;
 		}
 	}

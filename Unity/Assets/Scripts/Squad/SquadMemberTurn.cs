@@ -9,6 +9,7 @@ public class SquadMemberTurn : MonoBehaviour {
 	public SquadStats playerStats;
 	public float remainingTime;
 	public bool canMove;
+	public bool canRotate;
 	public bool canShoot;
 	public bool IsAlive;
 	public bool IsActiveSquaddie;
@@ -24,6 +25,7 @@ public class SquadMemberTurn : MonoBehaviour {
 	void Start () {
 		remainingTime = playerStats.ActionTime;
 		canMove = true;
+		canRotate = true;
 		canShoot = true;
 	}
 	
@@ -47,6 +49,7 @@ public class SquadMemberTurn : MonoBehaviour {
 	public void ToggleMovement(bool enable)
 	{
 		canMove = enable;
+		canRotate = enable;
 	}
 	
 	// Enable shooting
@@ -67,13 +70,19 @@ public class SquadMemberTurn : MonoBehaviour {
 		return canMove;
 	}
 
+	// Return if player can rotate
+	public bool CanRotate()
+	{
+		return canRotate;
+	}
+	
 	// Reset player turn time
 	public void ResetTurn()
 	{
 		// Check for any ill effects
 		float timeMod = 0;
-		canMove = true;
-		canShoot = true;
+		ToggleMovement (true);
+		ToggleShooting (true);
 
 		// Clear targets
 		TargetsInRangeCount = 0;
@@ -126,11 +135,14 @@ public class SquadMemberTurn : MonoBehaviour {
 	{
 		FireCollider.GetComponent<Light> ().enabled = true;
 		FireCollider.GetComponent<BoxCollider> ().enabled = true;
+
+		canMove = false;
 	}
 
 	// Cancel shoot of primary weapont
 	public void CancelFireWeapon()
 	{
+		ToggleMovement (true);
 	}
 
 	// Fire Overload ability
@@ -141,6 +153,7 @@ public class SquadMemberTurn : MonoBehaviour {
 	// Cancel use of Overload ability
 	public void CancelFireOverload()
 	{
+		ToggleMovement (true);
 	}
 
 	// Execute turn actions
