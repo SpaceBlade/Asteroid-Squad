@@ -4,6 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BattleTurnSystem : MonoBehaviour {
+	public enum TurnMode
+	{
+		BattleMode,
+		TurnActions,
+		EndTurn,
+		EndBattle
+	}
+
 	// Squads
 	public GameObject[] SquadAlpha;	// Player squad
 	public GameObject[] SquadBeta;	// NPC squad
@@ -22,6 +30,8 @@ public class BattleTurnSystem : MonoBehaviour {
 	private PlayerInputScript pis;
 	private int activePlayer = 0;
 	private float remainingTurnTime = 0;
+	private TurnMode turnMode = TurnMode.BattleMode;
+	private short TurnCount = 0;
 
 
 	// UI Objects updated by the Battle system
@@ -29,13 +39,14 @@ public class BattleTurnSystem : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		turnMode = TurnMode.BattleMode;
 		remainingTurnTime = TurnTimer;
 		pis = GetComponent<PlayerInputScript> ();
 
 		// If any members have been added to squad then add to dictionary
 		if (SquadAlpha != null && SquadAlpha.Length > 0) {
 			// start first player to move
-			pis.targetPlayer = SquadAlpha[activePlayer];
+			// pis.targetPlayer = SquadAlpha[activePlayer];
 			SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>().IsActiveSquaddie = true;
 
 			// Create copy
@@ -43,7 +54,7 @@ public class BattleTurnSystem : MonoBehaviour {
 			dupe.transform.position += new Vector3(20.0f, 0.0f, 50.0f);
 			dupe.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
 			*/
-			MainCamera.GetComponent<CameraController>().TrackedPlayer = pis.targetPlayer;
+			MainCamera.GetComponent<CameraController>().TrackedPlayer = SquadAlpha[activePlayer];
 		}
 
 		ResetTurn ();
@@ -53,15 +64,44 @@ public class BattleTurnSystem : MonoBehaviour {
 	void Update () {
 		remainingTurnTime -= Time.deltaTime;
 
-		// Check if turn ended
-		if (remainingTurnTime < 0) {
-			remainingTurnTime = TurnTimer;
-
-			// End turn
-			EndTurn();
-
+		// Switch player turn
+		if (Input.GetKeyDown (KeyCode.Tab)) {
+			SwitchActivePlayer();
 		}
-		TimeRemainingText.text = string.Format ("{0:n2} seconds", remainingTurnTime);
+
+		// Check if turn ended
+		if (remainingTurnTime < 0){
+			if(turnMode == TurnMode.BattleMode)
+			{
+				// Set end-turn timer
+				remainingTurnTime = 1.0f; // wait one second for physics collisions
+				turnMode = TurnMode.TurnActions;
+
+				// Disable actions
+				// Reset timer of all objects
+				GameObject[] squadmates = GameObject.FindGameObjectsWithTag("SquadMate");
+				for(int i = 0; i < squadmates.Length; i++)
+				{	
+					squadmates[i].GetComponent<SquadMemberTurn>().ToggleMovement(false);
+					squadmates[i].GetComponent<SquadMemberTurn>().ToggleShooting(false);
+				}
+			}
+			else if(turnMode == TurnMode.TurnActions)
+			{
+				remainingTurnTime = 5.0f; // wait time for turn actions and animations
+
+				// Reset Turn
+				turnMode = TurnMode.EndTurn;
+			}
+			else if(turnMode == TurnMode.EndTurn)
+			{
+				// End turn
+				EndTurn();
+				TurnCount++;
+			}
+		}
+
+		TimeRemainingText.text = string.Format ("TurnMode:{0:n0}\n{1:n2} seconds", (int)turnMode, remainingTurnTime);
 	}
 
 	public void SwitchActivePlayer()
@@ -88,11 +128,9 @@ public class BattleTurnSystem : MonoBehaviour {
 
 	public void EndTurn()
 	{
-		// Execute turn actions
-
-
 		// check if alive
 		if (IsSquadAlive (SquadAlpha) && (IsSquadAlive (SquadBeta) || IsSquadAlive (SquadGamma))) {
+
 			// Update Squads
 
 			ResetTurn();
@@ -121,6 +159,9 @@ public class BattleTurnSystem : MonoBehaviour {
 	// Reset turn
 	public void ResetTurn()
 	{
+		remainingTurnTime = TurnTimer;
+		turnMode = TurnMode.BattleMode;
+
 		// Reset timer of all objects
 		GameObject[] squadmates = GameObject.FindGameObjectsWithTag("SquadMate");
 		for(int i = 0; i < squadmates.Length; i++)
@@ -128,7 +169,7 @@ public class BattleTurnSystem : MonoBehaviour {
 			var squadTurn = squadmates[i].GetComponent<SquadMemberTurn>();
 			if(squadTurn.IsAlive)
 			{
-				squadTurn.ResetTurnTime();
+				squadTurn.ResetTurn();
 			}
 		}
 	}
@@ -136,5 +177,10 @@ public class BattleTurnSystem : MonoBehaviour {
 	// Battle is over
 	public void EndBattle()
 	{
+	}
+
+	public TurnMode GetActiveTurnMode()
+	{
+		return turnMode;
 	}
 }

@@ -29,7 +29,7 @@ public class SquadStats : MonoBehaviour {
 	// Initialize values to RandomStats
 	public void RandomStats()
 	{
-		ActionTime = Random.Range (10, 20);	// action time in seconds
+		ActionTime = Random.Range (5 , 10);	// action time in seconds
 
 		Health = 100;		// default health
 		Mana = 50;			// default mana
@@ -45,6 +45,11 @@ public class SquadStats : MonoBehaviour {
 
 	// Increase stats due to XP
 	public void LevelUp()
+	{
+	}
+
+	// Player has been hit
+	public void ApplyDamage(ushort attack, float precision)
 	{
 	}
 }
