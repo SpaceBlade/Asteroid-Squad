@@ -42,7 +42,7 @@ public class SquadMemberTurn : MonoBehaviour {
 			canMove = false;
 		}
 
-		SquadTextBox.text = string.Format ("{0:n2} seconds", remainingTime);
+		SquadTextBox.text = string.Format ("{0:n2} seconds\n {1:n} Health", remainingTime, playerStats.Health);
 	}
 
 	// Enable movement
@@ -159,5 +159,11 @@ public class SquadMemberTurn : MonoBehaviour {
 	// Execute turn actions
 	public void ExecuteTurnActions()
 	{
+		// loop through objects in collider
+		foreach (KeyValuePair<string, GameObject> kvp in TargetsInRange) {
+			if(kvp.Value.CompareTag("SquadMate")){
+				kvp.Value.GetComponent<SquadStats>().ApplyDamage(playerStats.Attack, playerStats.Precision);
+			}
+		}
 	}
 }

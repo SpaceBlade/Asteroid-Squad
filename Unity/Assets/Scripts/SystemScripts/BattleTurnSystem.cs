@@ -27,7 +27,6 @@ public class BattleTurnSystem : MonoBehaviour {
 	public GameObject GameMap;
 	// Private objects
 
-	private PlayerInputScript pis;
 	private int activePlayer = 0;
 	private float remainingTurnTime = 0;
 	private TurnMode turnMode = TurnMode.BattleMode;
@@ -41,12 +40,10 @@ public class BattleTurnSystem : MonoBehaviour {
 	void Start () {
 		turnMode = TurnMode.BattleMode;
 		remainingTurnTime = TurnTimer;
-		pis = GetComponent<PlayerInputScript> ();
 
 		// If any members have been added to squad then add to dictionary
 		if (SquadAlpha != null && SquadAlpha.Length > 0) {
 			// start first player to move
-			// pis.targetPlayer = SquadAlpha[activePlayer];
 			SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>().IsActiveSquaddie = true;
 
 			// Create copy
@@ -74,7 +71,7 @@ public class BattleTurnSystem : MonoBehaviour {
 			if(turnMode == TurnMode.BattleMode)
 			{
 				// Set end-turn timer
-				remainingTurnTime = 1.0f; // wait one second for physics collisions
+				remainingTurnTime = 0.60f; // wait one second for physics collisions
 				turnMode = TurnMode.TurnActions;
 
 				// Disable actions
@@ -82,13 +79,40 @@ public class BattleTurnSystem : MonoBehaviour {
 				GameObject[] squadmates = GameObject.FindGameObjectsWithTag("SquadMate");
 				for(int i = 0; i < squadmates.Length; i++)
 				{	
-					squadmates[i].GetComponent<SquadMemberTurn>().ToggleMovement(false);
-					squadmates[i].GetComponent<SquadMemberTurn>().ToggleShooting(false);
+					var squadTurn = squadmates[i].GetComponent<SquadMemberTurn>();
+					if(squadTurn != null){
+						squadTurn.ToggleMovement(false);
+						squadTurn.ToggleShooting(false);
+					}
 				}
 			}
 			else if(turnMode == TurnMode.TurnActions)
 			{
 				remainingTurnTime = 5.0f; // wait time for turn actions and animations
+
+				// Reset timer of all objects
+				if(SquadAlpha != null && SquadAlpha.Length > 0)
+				{
+					for(int i = 0; i < SquadAlpha.Length; i++)
+					{	
+						SquadAlpha[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
+					}
+				}
+
+				if(SquadBeta != null && SquadBeta.Length > 0)
+				{
+					for(int i = 0; i < SquadBeta.Length; i++)
+					{	
+						// SquadBeta[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
+					}
+				}
+
+				if(SquadGamma != null && SquadGamma.Length > 0){
+					for(int i = 0; i < SquadGamma.Length; i++)
+					{	
+						// SquadBeta[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
+					}
+				}
 
 				// Reset Turn
 				turnMode = TurnMode.EndTurn;
@@ -167,7 +191,7 @@ public class BattleTurnSystem : MonoBehaviour {
 		for(int i = 0; i < squadmates.Length; i++)
 		{
 			var squadTurn = squadmates[i].GetComponent<SquadMemberTurn>();
-			if(squadTurn.IsAlive)
+			if(squadTurn != null && squadTurn.IsAlive)
 			{
 				squadTurn.ResetTurn();
 			}
