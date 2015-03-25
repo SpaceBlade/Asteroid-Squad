@@ -5,14 +5,14 @@ using System.Collections;
 public class SquadStats : MonoBehaviour {
 	// Stats for each squad member
 	public float ActionTime;
-	public ushort Health;
-	public ushort Mana;
+	public int Health;
+	public int Mana;
 	public float Precision;
 	public float Reaction;
-	public ushort Attack;
-	public ushort Defense;
-	public ushort Luck;
-	public ushort Level;
+	public int Attack;
+	public int Defense;
+	public int Luck;
+	public int Level;
 
 
 
@@ -49,7 +49,13 @@ public class SquadStats : MonoBehaviour {
 	}
 
 	// Player has been hit
-	public void ApplyDamage(ushort attack, float precision)
+	public void ApplyDamage(int attack, float precision)
 	{
+		Debug.Log (string.Format( "Applying damage to {0}\nHealth: {1:n}", name, Health));
+		// Decrease health
+		Health -= attack;
+		if (Health < 0) {
+			Health = 0;
+		}
 	}
 }

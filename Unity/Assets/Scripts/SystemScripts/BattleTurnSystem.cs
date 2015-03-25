@@ -88,7 +88,7 @@ public class BattleTurnSystem : MonoBehaviour {
 			}
 			else if(turnMode == TurnMode.TurnActions)
 			{
-				remainingTurnTime = 5.0f; // wait time for turn actions and animations
+				remainingTurnTime = 2.0f; // wait time for turn actions and animations
 
 				// Reset timer of all objects
 				if(SquadAlpha != null && SquadAlpha.Length > 0)

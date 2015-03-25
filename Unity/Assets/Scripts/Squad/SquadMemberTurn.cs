@@ -18,7 +18,7 @@ public class SquadMemberTurn : MonoBehaviour {
 
 	public BattleTurnSystem battleTurnManager;
 	private short TargetsInRangeCount = 0;
-	private Dictionary<string, GameObject>TargetsInRange = new Dictionary<string, GameObject> ();
+	private Dictionary<string, SquadStats>TargetsInRange = new Dictionary<string, SquadStats> ();
 
 
 	// Use this for initialization
@@ -27,6 +27,10 @@ public class SquadMemberTurn : MonoBehaviour {
 		canMove = true;
 		canRotate = true;
 		canShoot = true;
+	}
+
+	void Awake(){
+		playerStats = GetComponent<SquadStats> ();
 	}
 	
 	// Update is called once per frame
@@ -42,7 +46,7 @@ public class SquadMemberTurn : MonoBehaviour {
 			canMove = false;
 		}
 
-		SquadTextBox.text = string.Format ("{0:n2} seconds\n {1:n} Health", remainingTime, playerStats.Health);
+		SquadTextBox.text = string.Format ("{2}\n{0:n2} seconds\n {1:n} Health", remainingTime, playerStats.Health, name);
 	}
 
 	// Enable movement
@@ -111,12 +115,14 @@ public class SquadMemberTurn : MonoBehaviour {
 	public void OnTriggerStay(Collider other)
 	{
 		// Only track damage at turn end
-		if (battleTurnManager.GetActiveTurnMode () == BattleTurnSystem.TurnMode.EndTurn) {
+		if (battleTurnManager.GetActiveTurnMode () == BattleTurnSystem.TurnMode.TurnActions) {
 			// Add objects to attack list
 			if(!TargetsInRange.ContainsKey(other.name))
 			{
-				Debug.Log ("Player in attack range" + other.name);
-				TargetsInRange.Add(other.name, other.gameObject);
+				if(other.gameObject.CompareTag("SquadMate")){
+					Debug.Log ("Player in attack range" + other.name);
+					TargetsInRange.Add(other.name, other.GetComponent<SquadStats>());
+				}
 			}
 		}
 	}
@@ -159,11 +165,11 @@ public class SquadMemberTurn : MonoBehaviour {
 	// Execute turn actions
 	public void ExecuteTurnActions()
 	{
+		Debug.Log (string.Format( "Executing turn actions: {0}", name));
 		// loop through objects in collider
-		foreach (KeyValuePair<string, GameObject> kvp in TargetsInRange) {
-			if(kvp.Value.CompareTag("SquadMate")){
-				kvp.Value.GetComponent<SquadStats>().ApplyDamage(playerStats.Attack, playerStats.Precision);
-			}
+		foreach (KeyValuePair<string, SquadStats> kvp in TargetsInRange) {
+			Debug.Log (string.Format( "Applying damage to {0}\n", kvp.Value.ToString()));
+			kvp.Value.ApplyDamage(playerStats.Attack, playerStats.Precision);
 		}
 	}
 }
