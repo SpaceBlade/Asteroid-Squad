@@ -12,6 +12,10 @@ public class BattleTurnSystem : MonoBehaviour {
 		EndBattle
 	}
 
+	// Prefabs
+	public GameObject playerPrefab;
+	public GameObject NPCPrefab;
+
 	// Squads
 	public GameObject[] SquadAlpha;	// Player squad
 	public GameObject[] SquadBeta;	// NPC squad
@@ -40,6 +44,19 @@ public class BattleTurnSystem : MonoBehaviour {
 	void Start () {
 		turnMode = TurnMode.BattleMode;
 		remainingTurnTime = TurnTimer;
+		GameObject[] spawningPoints = GameObject.FindGameObjectsWithTag ("SpawnPoints");
+		if (spawningPoints != null && spawningPoints.Length > 0) {
+			Debug.Log(string.Format("Found ({0:n}) spawning points", spawningPoints.Length));
+			// Add NPC
+			SquadBeta = new GameObject[spawningPoints.Length];
+			for(int pt=0; pt < spawningPoints.Length; pt++){
+				SquadBeta[pt] = (GameObject)Instantiate(NPCPrefab, spawningPoints[pt].transform.position, spawningPoints[pt].transform.rotation);
+			}
+		}
+
+
+
+
 
 		// If any members have been added to squad then add to dictionary
 		if (SquadAlpha != null && SquadAlpha.Length > 0) {
@@ -88,7 +105,7 @@ public class BattleTurnSystem : MonoBehaviour {
 			}
 			else if(turnMode == TurnMode.TurnActions)
 			{
-				remainingTurnTime = 2.0f; // wait time for turn actions and animations
+				remainingTurnTime = 1.0f; // wait time for turn actions and animations
 
 				// Reset timer of all objects
 				if(SquadAlpha != null && SquadAlpha.Length > 0)

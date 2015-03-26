@@ -12,7 +12,7 @@ public class SquadMemberTurn : MonoBehaviour {
 	public bool canRotate;
 	public bool canShoot;
 	public bool IsAlive;
-	public bool IsActiveSquaddie;
+	public bool IsActiveSquaddie = false;
 	public GameObject[] ActiveEffects;
 	public GameObject FireCollider;
 
