@@ -31,6 +31,8 @@ public class SquadMemberTurn : MonoBehaviour {
 
 	void Awake(){
 		playerStats = GetComponent<SquadStats> ();
+		var turnmgr = GameObject.FindGameObjectWithTag ("TurnManager");
+		battleTurnManager = turnmgr.GetComponent<BattleTurnSystem> ();
 	}
 	
 	// Update is called once per frame

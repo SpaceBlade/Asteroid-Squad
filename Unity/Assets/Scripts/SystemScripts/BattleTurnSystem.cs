@@ -23,6 +23,7 @@ public class BattleTurnSystem : MonoBehaviour {
 
 	// Turn
 	public float TurnTimer;
+	public TurnMode turnMode = TurnMode.BattleMode;
 
 	// Turn camera
 	public GameObject MainCamera;
@@ -33,7 +34,7 @@ public class BattleTurnSystem : MonoBehaviour {
 
 	private int activePlayer = 0;
 	private float remainingTurnTime = 0;
-	private TurnMode turnMode = TurnMode.BattleMode;
+
 	private short TurnCount = 0;
 
 
