@@ -13,6 +13,7 @@ public class SquadStats : MonoBehaviour {
 	public int Defense;
 	public int Luck;
 	public int Level;
+	public bool IsAlive;
 
 
 
@@ -40,6 +41,7 @@ public class SquadStats : MonoBehaviour {
 		Luck = 2;			// Luck modifier
 		Level = 1;			// Player level
 
+		IsAlive = true;		// Player is alive
 
 	}
 

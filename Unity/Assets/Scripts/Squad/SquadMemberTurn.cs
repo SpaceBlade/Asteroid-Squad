@@ -11,14 +11,14 @@ public class SquadMemberTurn : MonoBehaviour {
 	public bool canMove;
 	public bool canRotate;
 	public bool canShoot;
-	public bool IsAlive;
+
 	public bool IsActiveSquaddie = false;
 	public GameObject[] ActiveEffects;
 	public GameObject FireCollider;
 
 	public BattleTurnSystem battleTurnManager;
 	private short TargetsInRangeCount = 0;
-	private Dictionary<string, SquadStats>TargetsInRange = new Dictionary<string, SquadStats> ();
+	private Dictionary<string, SquadMemberTurn>TargetsInRange = new Dictionary<string, SquadMemberTurn> ();
 
 
 	// Use this for initialization
@@ -33,6 +33,7 @@ public class SquadMemberTurn : MonoBehaviour {
 		playerStats = GetComponent<SquadStats> ();
 		var turnmgr = GameObject.FindGameObjectWithTag ("TurnManager");
 		battleTurnManager = turnmgr.GetComponent<BattleTurnSystem> ();
+		SquadTextBox = GetComponentInChildren<Text> ();
 	}
 	
 	// Update is called once per frame
@@ -123,7 +124,7 @@ public class SquadMemberTurn : MonoBehaviour {
 			{
 				if(other.gameObject.CompareTag("SquadMate")){
 					Debug.Log ("Player in attack range" + other.name);
-					TargetsInRange.Add(other.name, other.GetComponent<SquadStats>());
+					TargetsInRange.Add(other.name, other.GetComponent<SquadMemberTurn>());
 				}
 			}
 		}
@@ -169,9 +170,9 @@ public class SquadMemberTurn : MonoBehaviour {
 	{
 		Debug.Log (string.Format( "Executing turn actions: {0}", name));
 		// loop through objects in collider
-		foreach (KeyValuePair<string, SquadStats> kvp in TargetsInRange) {
+		foreach (KeyValuePair<string, SquadMemberTurn> kvp in TargetsInRange) {
 			Debug.Log (string.Format( "Applying damage to {0}\n", kvp.Value.ToString()));
-			kvp.Value.ApplyDamage(playerStats.Attack, playerStats.Precision);
+			kvp.Value.playerStats.ApplyDamage(playerStats.Attack, playerStats.Precision);
 		}
 	}
 }

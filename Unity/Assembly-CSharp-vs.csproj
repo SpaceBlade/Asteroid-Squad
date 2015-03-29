@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraManagement\CameraController.cs" />
+     <Compile Include="Assets\Scripts\MapProperties.cs" />
      <Compile Include="Assets\Scripts\PlayerInputScript.cs" />
      <Compile Include="Assets\Scripts\Squad\SquadMemberTurn.cs" />
      <Compile Include="Assets\Scripts\Squad\SquadStats.cs" />
