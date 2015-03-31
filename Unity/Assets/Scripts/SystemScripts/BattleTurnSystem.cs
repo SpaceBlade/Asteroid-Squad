@@ -42,9 +42,11 @@ public class BattleTurnSystem : MonoBehaviour {
 	// UI Objects updated by the Battle system
 	public Text TimeRemainingText;
 	public Slider TimeRemainingSlider;
+	public Text NewRoundText;
 
 	// Use this for initialization
 	void Start () {
+		NewRoundText.enabled = false;
 		turnMode = TurnMode.BattleMode;
 		TranslateTurnString (turnMode);
 		remainingTurnTime = TurnTimer;
@@ -199,9 +201,11 @@ public class BattleTurnSystem : MonoBehaviour {
 
 	public void EndTurn()
 	{
+
 		// check if alive
 		if (IsSquadAlive (SquadAlpha) && (IsSquadAlive (SquadBeta) || IsSquadAlive (SquadGamma))) {
-
+			NewRoundText.enabled = true;
+			StartCoroutine("NewTurnFade");
 			// Update Squads
 
 			ResetTurn();
@@ -277,5 +281,18 @@ public class BattleTurnSystem : MonoBehaviour {
 			currentTurnString = "Battle";
 			break;
 		}
+	}
+
+	private IEnumerator NewTurnFade()
+	{
+		NewRoundText.enabled = true;
+		for(float sc = 0.0f; sc < 4.0f; sc+= 0.1f)
+		{
+			NewRoundText.transform.localScale  = Vector3.one * sc;
+			// yield return new WaitForSeconds(0.1f);
+			yield return null;
+		}
+
+		NewRoundText.enabled = false;
 	}
 }

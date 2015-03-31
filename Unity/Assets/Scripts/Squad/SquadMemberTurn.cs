@@ -23,7 +23,6 @@ public class SquadMemberTurn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		remainingTime = playerStats.ActionTime;
 		canMove = true;
 		canRotate = true;
 		canShoot = true;
@@ -34,6 +33,7 @@ public class SquadMemberTurn : MonoBehaviour {
 		var turnmgr = GameObject.FindGameObjectWithTag ("TurnManager");
 		battleTurnManager = turnmgr.GetComponent<BattleTurnSystem> ();
 		SquadTextBox = GetComponentInChildren<Text> ();
+		remainingTime = playerStats.ActionTime;
 	}
 	
 	// Update is called once per frame
