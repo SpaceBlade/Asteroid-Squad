@@ -1,0 +1,10 @@
+<XamlCompilerSaveState>
+  <ReferenceAssemblyList>
+    <LocalAssembly PathName="c:\users\pedrofv\documents\myunitydemo\asteroid-squad\release\asteroid-squad\template.winmd" HashGuid="97ff227b-6a0c-ce8e-df46-d8e237f56845" />
+    <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windows\v8.1\extensionsdks\microsoft.vclibs\12.0\references\commonconfiguration\neutral\platform.winmd" HashGuid="58b6b6d1-928e-9908-9804-eb460e5e101b" />
+    <ReferenceAssembly PathName="c:\users\pedrofv\documents\myunitydemo\asteroid-squad\players\windows81\x86\release\bridgeinterface.winmd" HashGuid="b8a75257-9cbd-5c8a-5eb4-0a2dd4129250" />
+    <ReferenceAssembly PathName="c:\users\pedrofv\documents\myunitydemo\asteroid-squad\players\windows81\x86\release\unityenginedelegates.winmd" HashGuid="d5bfa646-8453-25f8-b5ef-24280c447d94" />
+    <ReferenceAssembly PathName="c:\users\pedrofv\documents\myunitydemo\asteroid-squad\players\windows81\x86\release\unityplayer.winmd" HashGuid="c2e7439c-e4d8-d78e-66ca-f782d2c81588" />
+    <ReferenceAssembly PathName="c:\users\pedrofv\documents\myunitydemo\asteroid-squad\players\windows81\x86\release\winrtbridge.winmd" HashGuid="b1e01a00-d364-2096-024c-70039101753d" />
+  </ReferenceAssemblyList>
+</XamlCompilerSaveState>

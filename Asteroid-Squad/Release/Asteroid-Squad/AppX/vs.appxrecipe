@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>PEDROFV-CARBON</Machine>
+    <WindowsUser>pedrofv</WindowsUser>
+    <SolutionConfiguration>Release|Win32</SolutionConfiguration>
+    <PackageArchitecture>x86</PackageArchitecture>
+    <PackageIdentityName>MyUnityDemo</PackageIdentityName>
+    <RegisteredManifestChecksum>70083EEEC5A6C1E366D24E01B319F37B2EF45C5210A6BD3CB143F13C902D199C</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>MyUnityDemo_1.0.0.0_x86__pzq3xp76mxafg</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>MyUnityDemo_pzq3xp76mxafg!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>MyUnityDemo</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=DefaultCompany</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Release\Asteroid-Squad\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-03-12T04:27:35.327</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Release\Asteroid-Squad\Asteroid-Squad.exe">
+      <PackagePath>Asteroid-Squad.exe</PackagePath>
+      <Modified>2015-03-26T05:54:07.320</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Players\Windows81\x86\Release\BridgeInterface.winmd">
+      <PackagePath>BridgeInterface.winmd</PackagePath>
+      <Modified>2015-02-18T15:44:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Players\Windows81\x86\Release\UnityEngineDelegates.winmd">
+      <PackagePath>UnityEngineDelegates.winmd</PackagePath>
+      <Modified>2015-02-18T15:44:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Players\Windows81\x86\Release\UnityPlayer.winmd">
+      <PackagePath>UnityPlayer.winmd</PackagePath>
+      <Modified>2015-02-18T15:47:30.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Players\Windows81\x86\Release\WinRTBridge.winmd">
+      <PackagePath>WinRTBridge.winmd</PackagePath>
+      <Modified>2015-02-18T15:44:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Players\Windows81\x86\Release\UnityPlayer.dll">
+      <PackagePath>UnityPlayer.dll</PackagePath>
+      <Modified>2015-02-18T15:47:44.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Players\Windows81\x86\Release\BridgeInterface.dll">
+      <PackagePath>BridgeInterface.dll</PackagePath>
+      <Modified>2015-02-18T15:44:18.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Players\Windows81\x86\Release\UnityEngineDelegates.dll">
+      <PackagePath>UnityEngineDelegates.dll</PackagePath>
+      <Modified>2015-02-18T15:44:20.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Release\Asteroid-Squad\Template.winmd">
+      <PackagePath>Template.winmd</PackagePath>
+      <Modified>2015-03-12T04:27:24.958</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Assets\MediumTile.scale-100.png">
+      <PackagePath>Assets\MediumTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-01-22T12:24:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Assets\SmallLogo.scale-100.png">
+      <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-02-18T15:33:46.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-02-18T15:33:46.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Assets\StoreLogo.scale-100.png">
+      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-01-22T12:24:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Assets\WideTile.scale-100.png">
+      <PackagePath>Assets\WideTile.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2015-01-22T12:24:48.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Players\Windows81\x86\Release\UnityEngineProxy.dll">
+      <PackagePath>UnityEngineProxy.dll</PackagePath>
+      <Modified>2015-02-18T15:44:22.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Assembly-CSharp.dll">
+      <PackagePath>Assembly-CSharp.dll</PackagePath>
+      <Modified>2015-03-26T05:54:01.264</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Assembly-UnityScript.dll">
+      <PackagePath>Assembly-UnityScript.dll</PackagePath>
+      <Modified>2015-03-26T05:54:01.279</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\UnityEngine.dll">
+      <PackagePath>UnityEngine.dll</PackagePath>
+      <Modified>2015-03-26T05:54:01.566</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\UnityEngine.UI.dll">
+      <PackagePath>UnityEngine.UI.dll</PackagePath>
+      <Modified>2015-03-26T05:54:01.658</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\WinRTLegacy.dll">
+      <PackagePath>WinRTLegacy.dll</PackagePath>
+      <Modified>2015-03-26T05:54:01.711</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Data\mainData">
+      <PackagePath>Data\mainData</PackagePath>
+      <Modified>2015-03-26T05:53:33.489</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Data\PlayerConnectionConfigFile">
+      <PackagePath>Data\PlayerConnectionConfigFile</PackagePath>
+      <Modified>2015-03-26T05:53:33.745</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Data\Resources\unity default resources">
+      <PackagePath>Data\Resources\unity default resources</PackagePath>
+      <Modified>2015-02-18T15:37:00.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Data\Resources\unity_builtin_extra">
+      <PackagePath>Data\Resources\unity_builtin_extra</PackagePath>
+      <Modified>2015-03-26T05:53:33.744</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Data\managedAssemblies.txt">
+      <PackagePath>Data\managedAssemblies.txt</PackagePath>
+      <Modified>2015-03-26T05:53:40.340</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Data\sharedassets0.assets">
+      <PackagePath>Data\sharedassets0.assets</PackagePath>
+      <Modified>2015-03-26T05:53:33.714</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Release\Asteroid-Squad\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+      <Modified>2015-03-05T07:00:45.524</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Release\Asteroid-Squad\MainPage.xbf">
+      <PackagePath>MainPage.xbf</PackagePath>
+      <Modified>2015-03-05T07:00:45.525</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\pedrofv\Documents\MyUnityDemo\Asteroid-Squad\Asteroid-Squad\Release\Asteroid-Squad\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2015-03-12T04:27:30.340</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>ARM</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Retail\ARM\Microsoft.VCLibs.ARM.12.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>x64</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Retail\x64\Microsoft.VCLibs.x64.12.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\">
+      <Name>Microsoft.VCLibs.120.00</Name>
+      <Version>12.0.21005.1</Version>
+      <Architecture>x86</Architecture>
+      <FrameworkIdentity>Name = Microsoft.VCLibs.120.00, MinVersion = 12.0.21005.1</FrameworkIdentity>
+      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\Windows\v8.1\ExtensionSDKs\Microsoft.VCLibs\12.0\.\AppX\Retail\x86\Microsoft.VCLibs.x86.12.00.appx</AppxLocation>
+      <MoreInfo>
+      </MoreInfo>
+    </ResolvedSDKReference>
+  </ItemGroup>
+</Project>
