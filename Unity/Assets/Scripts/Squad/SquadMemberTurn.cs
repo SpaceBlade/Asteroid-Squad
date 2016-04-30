@@ -11,21 +11,22 @@ public class SquadMemberTurn : MonoBehaviour {
 	public bool canMove;
 	public bool canRotate;
 	public bool canShoot;
+	public int squadId;
 
 	public bool IsActiveSquaddie = false;
 	public GameObject[] ActiveEffects;
-	public GameObject FireCollider;
+	public GameObject ActiveGun;
 
 	public BattleTurnSystem battleTurnManager;
 	private short TargetsInRangeCount = 0;
 	private Dictionary<string, SquadMemberTurn>TargetsInRange = new Dictionary<string, SquadMemberTurn> ();
-
 
 	// Use this for initialization
 	void Start () {
 		canMove = true;
 		canRotate = true;
 		canShoot = true;
+		squadId = 0;
 	}
 
 	void Awake(){
@@ -133,8 +134,8 @@ public class SquadMemberTurn : MonoBehaviour {
 	// Reset fire effects
 	private void DisableShootingEffects()
 	{
-		FireCollider.GetComponent<Light> ().enabled = false;
-		FireCollider.GetComponent<BoxCollider> ().enabled = false;
+		ActiveGun.GetComponentInChildren<Light> ().enabled = false;
+		ActiveGun.GetComponentInChildren<BoxCollider> ().enabled = false;
 	}
 
 
@@ -142,8 +143,8 @@ public class SquadMemberTurn : MonoBehaviour {
 	// Shoot primary weapon
 	public void FireWeapon()
 	{
-		FireCollider.GetComponent<Light> ().enabled = true;
-		FireCollider.GetComponent<BoxCollider> ().enabled = true;
+		ActiveGun.GetComponentInChildren<Light> ().enabled = true;
+		ActiveGun.GetComponentInChildren<BoxCollider> ().enabled = true;
 
 		canMove = false;
 	}
@@ -173,6 +174,24 @@ public class SquadMemberTurn : MonoBehaviour {
 		foreach (KeyValuePair<string, SquadMemberTurn> kvp in TargetsInRange) {
 			Debug.Log (string.Format( "Applying damage to {0}\n", kvp.Value.ToString()));
 			kvp.Value.playerStats.ApplyDamage(playerStats.Attack, playerStats.Precision);
+            
+            // Kill character
+            if (!kvp.Value.playerStats.IsAlive)
+            {
+                StartCoroutine(kvp.Value.Death());
+            }
+            else
+            {
+                // Target is alive
+            }
 		}
-	}
+	} // ExecuteturnActions
+
+    // Death Animation
+    public IEnumerator Death()
+    {
+        this.transform.Rotate(-75, 0, 0);
+        yield return new WaitForSeconds(1.5f);
+           
+    }
 }

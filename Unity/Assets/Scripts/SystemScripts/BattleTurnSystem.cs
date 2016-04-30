@@ -77,7 +77,7 @@ public class BattleTurnSystem : MonoBehaviour {
 		}
 
 		// Check for Beta spawn points
-		if(mapPoints.SpawnPointsAlpha != null && mapPoints.SpawnPointsBeta.Length > 0){
+		if(mapPoints.SpawnPointsBeta != null && mapPoints.SpawnPointsBeta.Length > 0){
 			Debug.Log(string.Format("Team Beta ({0:n}) spawning points", mapPoints.SpawnPointsBeta.Length));
 			// Add NPC
 			SquadBeta = new GameObject[mapPoints.SpawnPointsBeta.Length];
@@ -104,6 +104,10 @@ public class BattleTurnSystem : MonoBehaviour {
 			// Update UI for BattleMode
 			TimeRemainingSlider.value = remainingTurnTime;
 		}
+        else if (turnMode == TurnMode.EndBattle)
+        {
+            // End Battle
+        }
 
 		// Switch player turn
 		if (Input.GetKeyDown (KeyCode.Tab)) {
@@ -181,24 +185,39 @@ public class BattleTurnSystem : MonoBehaviour {
 		// Check if teams defined
 		if (SquadAlpha.Length > 0) {
 			// Reset active flag
-			SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>().IsActiveSquaddie = false;
+			SquadMemberTurn currentSMT = SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>();
+            
+            // Check if all players in team have been switched
+            if (++activePlayer >= SquadAlpha.Length)
+            {
+                // Reset active player
+                activePlayer = 0;
+            }
 
-			 // Check if all players in team have been switched
-			if(++activePlayer >= SquadAlpha.Length)
-			{
-				// Reset active player
-				activePlayer = 0;
-			}
+            // Check if player is not dead
+            SquadMemberTurn smt = SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>();
+            int maxTries = SquadAlpha.Length, currentTry = 0;
+            while (!smt.playerStats.IsAlive && currentTry < maxTries)
+            {
+                // Check if all players in team have been switched
+                if (++activePlayer >= SquadAlpha.Length)
+                {
+                    // Reset active player
+                    activePlayer = 0;
+                }
+                
+                smt = SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>();
+                currentTry++;
+            }
+            
+            smt.IsActiveSquaddie = true;
+            MainCamera.GetComponent<CameraController>().TrackedPlayer = SquadAlpha[activePlayer];
 
-			MainCamera.GetComponent<CameraController>().TrackedPlayer = SquadAlpha[activePlayer];
-			SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>().IsActiveSquaddie = true;
+            // Reset last active
+            currentSMT.IsActiveSquaddie = false;
 		}
 	}
-
-	public void EndPlayerturn()
-	{
-	}
-
+    	
 	public void EndTurn()
 	{
 
@@ -269,10 +288,10 @@ public class BattleTurnSystem : MonoBehaviour {
 			currentTurnString = "Battle";
 			break;
 		case TurnMode.EndBattle:
-			currentTurnString = "Turn Actions";
+			currentTurnString = "End Battle";
 			break;
 		case TurnMode.EndTurn:
-			currentTurnString = "Turn Actions";
+			currentTurnString = "End turn";
 			break;
 		case TurnMode.TurnActions:
 			currentTurnString = "Turn Actions";
@@ -283,7 +302,8 @@ public class BattleTurnSystem : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator NewTurnFade()
+	// Displayed at the beginning of each turn
+    private IEnumerator NewTurnFade()
 	{
 		NewRoundText.enabled = true;
 		for(float sc = 0.0f; sc < 4.0f; sc+= 0.1f)
@@ -294,5 +314,25 @@ public class BattleTurnSystem : MonoBehaviour {
 		}
 
 		NewRoundText.enabled = false;
-	}
+	} // NewTurnFade()
+
+    private IEnumerator EndBattleFade()
+    {
+        NewRoundText.enabled = true;
+
+        NewRoundText.text = "Your squad lost!";
+        if (IsSquadAlive(SquadAlpha))
+        {
+            NewRoundText.text = "Winner!";
+        }
+
+        for (float sc = 0.0f; sc < 14.0f; sc += 0.1f)
+        {
+            NewRoundText.transform.localScale = Vector3.one * sc;
+            // yield return new WaitForSeconds(0.1f);
+            yield return null;
+        }
+
+        NewRoundText.enabled = false;
+    } // EndBattleFade()
 }

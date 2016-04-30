@@ -34,6 +34,8 @@ public class PlayerInputScript : MonoBehaviour {
 			return;
 		}
 
+        // Input.m
+
 		float moveX = Input.GetAxis ("Horizontal");
 		float moveY = Input.GetAxis ("Vertical");
 		Vector3 movement = transform.forward * moveY * PlayerSpeed * Time.deltaTime;
@@ -42,6 +44,7 @@ public class PlayerInputScript : MonoBehaviour {
 		// Jump
 		if(Input.GetKey(KeyCode.Return))
 		{
+            // SquaddieTurn.rigidbody.. .AddForce(Vector3.up * JumpForce * Time.deltaTime);
 			// targetPlayer.rigidbody.AddForce (Vector3.up * JumpForce * Time.deltaTime);
 		}
 		

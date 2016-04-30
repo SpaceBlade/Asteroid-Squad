@@ -32,7 +32,7 @@ public class SquadStats : MonoBehaviour {
 	{
 		ActionTime = Random.Range (5 , 10);	// action time in seconds
 
-		Health = 100;		// default health
+		Health = 1;		// default health
 		Mana = 50;			// default mana
 		Precision = Random.Range (0.5f, 0.7f);	// default presicion 50-70% accuracy
 		Reaction = Random.Range (0.5f, 0.7f);	// default reaction 50-70% chance
@@ -58,6 +58,7 @@ public class SquadStats : MonoBehaviour {
 		Health -= attack;
 		if (Health < 0) {
 			Health = 0;
+            IsAlive = false;
 		}
 	}
 }
