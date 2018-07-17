@@ -16,7 +16,8 @@ public class BattleTurnSystem : MonoBehaviour {
 	public GameObject playerPrefab;
 	public GameObject NPCPrefab;
 
-	// Squads
+    // Squads
+    public Dictionary<string, GameObject[]> Squads = new Dictionary<string, GameObject[]>();
 	public GameObject[] SquadAlpha;	// Player squad
 	public GameObject[] SquadBeta;	// NPC squad
 	public GameObject[] SquadGamma;	// NPC squad 2
@@ -65,26 +66,28 @@ public class BattleTurnSystem : MonoBehaviour {
 			}
 		}
 		*/
-		// Check for Team Alpha spawn points
-		var mapPoints = GameMap.GetComponent<MapProperties> ();
-		if(mapPoints.SpawnPointsAlpha != null && mapPoints.SpawnPointsAlpha.Length > 0){
-			Debug.Log(string.Format("Team Alpha ({0:n}) spawning points", mapPoints.SpawnPointsAlpha.Length));
-			// Add NPC
-			SquadAlpha = new GameObject[mapPoints.SpawnPointsAlpha.Length];
-			for(int pt=0; pt < mapPoints.SpawnPointsAlpha.Length; pt++){
-				SquadAlpha[pt] = (GameObject)Instantiate(playerPrefab, mapPoints.SpawnPointsAlpha[pt].transform.position, mapPoints.SpawnPointsAlpha[pt].transform.rotation);
-			}
-		}
 
-		// Check for Beta spawn points
-		if(mapPoints.SpawnPointsBeta != null && mapPoints.SpawnPointsBeta.Length > 0){
-			Debug.Log(string.Format("Team Beta ({0:n}) spawning points", mapPoints.SpawnPointsBeta.Length));
-			// Add NPC
-			SquadBeta = new GameObject[mapPoints.SpawnPointsBeta.Length];
-			for(int pt=0; pt < mapPoints.SpawnPointsAlpha.Length; pt++){
-				SquadBeta[pt] = (GameObject)Instantiate(NPCPrefab, mapPoints.SpawnPointsBeta[pt].transform.position, mapPoints.SpawnPointsBeta[pt].transform.rotation);
-			}
-		}
+
+		//// Check for Team Alpha spawn points
+		//var mapPoints = GameMap.GetComponent<MapProperties> ();
+		//if(mapPoints.SpawnPointsAlpha != null && mapPoints.SpawnPointsAlpha.Length > 0){
+		//	Debug.Log(string.Format("Team Alpha ({0:n}) spawning points", mapPoints.SpawnPointsAlpha.Length));
+		//	// Add NPC
+		//	SquadAlpha = new GameObject[mapPoints.SpawnPointsAlpha.Length];
+		//	for(int pt=0; pt < mapPoints.SpawnPointsAlpha.Length; pt++){
+		//		SquadAlpha[pt] = (GameObject)Instantiate(playerPrefab, mapPoints.SpawnPointsAlpha[pt].transform.position, mapPoints.SpawnPointsAlpha[pt].transform.rotation);
+		//	}
+		//}
+
+		//// Check for Beta spawn points
+		//if(mapPoints.SpawnPointsBeta != null && mapPoints.SpawnPointsBeta.Length > 0){
+		//	Debug.Log(string.Format("Team Beta ({0:n}) spawning points", mapPoints.SpawnPointsBeta.Length));
+		//	// Add NPC
+		//	SquadBeta = new GameObject[mapPoints.SpawnPointsBeta.Length];
+		//	for(int pt=0; pt < mapPoints.SpawnPointsAlpha.Length; pt++){
+		//		SquadBeta[pt] = (GameObject)Instantiate(NPCPrefab, mapPoints.SpawnPointsBeta[pt].transform.position, mapPoints.SpawnPointsBeta[pt].transform.rotation);
+		//	}
+		//}
 
 
 		// If any members have been added to squad then add to dictionary
@@ -99,15 +102,19 @@ public class BattleTurnSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		remainingTurnTime -= Time.deltaTime;
-		if (turnMode == TurnMode.BattleMode) {
-			// Update UI for BattleMode
-			TimeRemainingSlider.value = remainingTurnTime;
-		}
-        else if (turnMode == TurnMode.EndBattle)
+        if (turnMode == TurnMode.EndBattle)
         {
             // End Battle
+            StartCoroutine("EndBattleFade");
+            return;
         }
+
+        remainingTurnTime -= Time.deltaTime;
+        if (turnMode == TurnMode.BattleMode) {
+            
+            // Update UI for BattleMode
+            TimeRemainingSlider.value = remainingTurnTime;
+		}
 
 		// Switch player turn
 		if (Input.GetKeyDown (KeyCode.Tab)) {
@@ -116,10 +123,8 @@ public class BattleTurnSystem : MonoBehaviour {
 
 		// Check if turn ended
 		if (remainingTurnTime < 0){
-			if(turnMode == TurnMode.BattleMode)
+            if (turnMode == TurnMode.BattleMode)
 			{
-
-
 				// Set end-turn timer
 				remainingTurnTime = 0.60f; // wait one second for physics collisions
 				turnMode = TurnMode.TurnActions;
@@ -141,29 +146,39 @@ public class BattleTurnSystem : MonoBehaviour {
 			{
 				remainingTurnTime = 1.0f; // wait time for turn actions and animations
 
-				// Reset timer of all objects
-				if(SquadAlpha != null && SquadAlpha.Length > 0)
-				{
-					for(int i = 0; i < SquadAlpha.Length; i++)
-					{	
-						SquadAlpha[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
-					}
-				}
+                // Reset Player
+                foreach(var squad in Squads)
+                {
+                    for (int i = 0; i < squad.Value.Length; i++)
+                    {
+                        squad.Value[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
+                    }
+                }
 
-				if(SquadBeta != null && SquadBeta.Length > 0)
-				{
-					for(int i = 0; i < SquadBeta.Length; i++)
-					{	
-						// SquadBeta[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
-					}
-				}
 
-				if(SquadGamma != null && SquadGamma.Length > 0){
-					for(int i = 0; i < SquadGamma.Length; i++)
-					{	
-						// SquadBeta[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
-					}
-				}
+				//// Reset timer of all objects
+				//if(SquadAlpha != null && SquadAlpha.Length > 0)
+				//{
+				//	for(int i = 0; i < SquadAlpha.Length; i++)
+				//	{	
+				//		SquadAlpha[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
+				//	}
+				//}
+
+				//if(SquadBeta != null && SquadBeta.Length > 0)
+				//{
+				//	for(int i = 0; i < SquadBeta.Length; i++)
+				//	{	
+				//		// SquadBeta[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
+				//	}
+				//}
+
+				//if(SquadGamma != null && SquadGamma.Length > 0){
+				//	for(int i = 0; i < SquadGamma.Length; i++)
+				//	{	
+				//		// SquadBeta[i].GetComponent<SquadMemberTurn>().ExecuteTurnActions();
+				//	}
+				//}
 
 				// Reset Turn
 				turnMode = TurnMode.EndTurn;
@@ -238,9 +253,10 @@ public class BattleTurnSystem : MonoBehaviour {
 	private bool IsSquadAlive(GameObject [] squad)
 	{
 		// Check if all players in a squad are dead
-		if (squad != null || squad.Length > 0) {
+		if (squad != null && squad.Length > 0) {
 			for(int ix = 0; ix < squad.Length; ix++){
-				if(squad[ix].GetComponent<SquadStats>().Health > 0)
+                var squadStats = squad[ix].GetComponent<SquadStats>();
+                if (squadStats != null && squadStats.Health > 0)
 				{
 					return true;
 				}
