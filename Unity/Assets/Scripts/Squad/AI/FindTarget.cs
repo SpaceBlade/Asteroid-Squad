@@ -20,10 +20,10 @@ public class FindTarget : MonoBehaviour {
 		// Find New Target
         if (currentTarget == null)
         {
-            if (battleSys.SquadAlpha.Length > 0) // Check for players
-            {
-                currentTarget = battleSys.SquadAlpha[0];
-            }
+            //if (battleSys.SquadAlpha.Length > 0) // Check for players
+            //{
+            //    currentTarget = battleSys.SquadAlpha[0];
+            //}
         }
 	}
 

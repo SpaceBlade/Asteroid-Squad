@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class BattleTurnSystem : MonoBehaviour {
 	public enum TurnMode
@@ -18,9 +19,9 @@ public class BattleTurnSystem : MonoBehaviour {
 
     // Squads
     public Dictionary<string, GameObject[]> Squads = new Dictionary<string, GameObject[]>();
-	public GameObject[] SquadAlpha;	// Player squad
-	public GameObject[] SquadBeta;	// NPC squad
-	public GameObject[] SquadGamma;	// NPC squad 2
+	private GameObject[] SquadAlpha;    // Player squad
+    private GameObject[] SquadBeta; // NPC squad
+    private GameObject[] SquadGamma;	// NPC squad 2
 
 	// Turn
 	public float TurnTimer;
@@ -90,12 +91,6 @@ public class BattleTurnSystem : MonoBehaviour {
 		//}
 
 
-		// If any members have been added to squad then add to dictionary
-		if (SquadAlpha != null && SquadAlpha.Length > 0) {
-			// start first player to move
-			SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>().IsActiveSquaddie = true;
-			MainCamera.GetComponent<CameraController>().TrackedPlayer = SquadAlpha[activePlayer];
-		}
 
 		ResetTurn ();
 	}
@@ -198,7 +193,7 @@ public class BattleTurnSystem : MonoBehaviour {
 	public void SwitchActivePlayer()
 	{
 		// Check if teams defined
-		if (SquadAlpha.Length > 0) {
+		if (SquadAlpha != null && SquadAlpha.Length > 0) {
 			// Reset active flag
 			SquadMemberTurn currentSMT = SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>();
             
@@ -236,8 +231,16 @@ public class BattleTurnSystem : MonoBehaviour {
 	public void EndTurn()
 	{
 
-		// check if alive
-		if (IsSquadAlive (SquadAlpha) && (IsSquadAlive (SquadBeta) || IsSquadAlive (SquadGamma))) {
+        // check if alive
+        //if (IsSquadAlive (SquadAlpha) && (IsSquadAlive (SquadBeta) || IsSquadAlive (SquadGamma))) {
+        bool continueTurn = true;
+        foreach(var squad in Squads)
+        {
+            continueTurn = continueTurn && IsSquadAlive(squad.Value);
+        }
+
+        if (continueTurn)
+        { 
 			NewRoundText.enabled = true;
 			StartCoroutine("NewTurnFade");
 			// Update Squads
@@ -283,7 +286,19 @@ public class BattleTurnSystem : MonoBehaviour {
 				squadTurn.ResetTurn();
 			}
 		}
-	}
+
+        // If any members have been added to squad then add to dictionary
+        if (SquadAlpha == null)
+        {
+            if (Squads.ContainsKey("SquadAlpha") && Squads["SquadAlpha"].Length > 0)
+            {
+                SquadAlpha = Squads["SquadAlpha"];
+                // start first player to move
+                SquadAlpha[activePlayer].GetComponent<SquadMemberTurn>().IsActiveSquaddie = true;
+                MainCamera.GetComponent<CameraController>().TrackedPlayer = SquadAlpha[activePlayer];
+            }
+        }
+    }
 
 	// Battle is over
 	public void EndBattle()
