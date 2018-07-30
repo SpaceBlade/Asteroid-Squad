@@ -23,6 +23,8 @@ public class BattleTurnSystem : MonoBehaviour {
     private GameObject[] SquadBeta; // NPC squad
     private GameObject[] SquadGamma;	// NPC squad 2
 
+    
+
 	// Turn
 	public float TurnTimer;
 	public TurnMode turnMode = TurnMode.BattleMode;
@@ -32,9 +34,10 @@ public class BattleTurnSystem : MonoBehaviour {
 
 	// Map
 	public GameObject GameMap;
-	// Private objects
+    // Private objects
 
-	private int activePlayer = 0;
+    private GameObject ActivePlayer;
+    private int activePlayer = 0;
 	private float remainingTurnTime = 0;
 
 	private short TurnCount = 0;
@@ -93,6 +96,7 @@ public class BattleTurnSystem : MonoBehaviour {
 
 
 		ResetTurn ();
+
 	}
 	
 	// Update is called once per frame
@@ -227,8 +231,18 @@ public class BattleTurnSystem : MonoBehaviour {
             currentSMT.IsActiveSquaddie = false;
 		}
 	}
-    	
-	public void EndTurn()
+
+    public GameObject GetActivePlayer()
+    {
+        return ActivePlayer;
+    }
+
+    public void SwitchActivePlayer(GameObject selectedPlayer)
+    {
+        ActivePlayer = MainCamera.GetComponent<CameraController>().TrackedPlayer = selectedPlayer;
+    }
+
+    public void EndTurn()
 	{
 
         // check if alive

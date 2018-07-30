@@ -47,6 +47,10 @@ public class SpawnGenerator : MonoBehaviour {
                 // Add NPC
                 Vector3 spawnOffset = new Vector3(Random.Range(0.0f, 5.0f), 15.0f, Random.Range(0.0f, 5.0f));
                 squad[spawnIndex++] = (GameObject)Instantiate(SpawnPrefabs[Random.Range(0, SpawnPrefabs.Length - 1)], Origin.position + spawnOffset, Origin.rotation);
+                var navMeshAgent = squad[spawnIndex - 1].AddComponent<NavMeshAgent>();
+                navMeshAgent.radius = 0.5f;
+                navMeshAgent.height = 5.0f;
+                navMeshAgent.speed = 3.5f;
                 generatorIndex++;
             }
 
