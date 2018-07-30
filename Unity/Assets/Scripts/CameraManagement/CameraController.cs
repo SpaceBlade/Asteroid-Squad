@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour {
 	public float TrackingDistance;
 	public float TrackingSpeed;
 	private Vector3 offset;
+    public float RotationSpeed = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,7 @@ public class CameraController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		/*
+        /*
 		 * Vector3 dist = TrackedPlayer.transform.position - transform.position;
 		if(dist.magnitude > TrackingDistance)
 		{
@@ -22,6 +23,8 @@ public class CameraController : MonoBehaviour {
 			transform.LookAt (TrackedPlayer.transform.position);
 		}
 		*/
+
+        ControlCamera();
 	}
 
 	void LateUpdate()
@@ -32,4 +35,16 @@ public class CameraController : MonoBehaviour {
 			// Do Something
 		}
 	}
+
+    void ControlCamera()
+    {
+        if (Input.GetKey(KeyCode.Q))
+        {
+            this.gameObject.transform.Rotate(this.gameObject.transform.worldToLocalMatrix.MultiplyVector(Vector3.up), -Mathf.PI * RotationSpeed);
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            this.gameObject.transform.Rotate(this.gameObject.transform.worldToLocalMatrix.MultiplyVector(Vector3.up), Mathf.PI * RotationSpeed);
+        }
+    }
 }

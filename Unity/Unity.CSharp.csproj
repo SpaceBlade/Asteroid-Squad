@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Lander\Lander_PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Map\MapProperties.cs" />
     <Compile Include="Assets\Scripts\Map\SpawnGenerator.cs" />
+    <Compile Include="Assets\Scripts\Map\TileSelection.cs" />
     <Compile Include="Assets\Scripts\PlayerInputScript.cs" />
     <Compile Include="Assets\Scripts\Squad\AI\FindTarget.cs" />
     <Compile Include="Assets\Scripts\Squad\AI\FollowTarget.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\SystemScripts\BattleTurnSystem.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\MiscTextures\MiscMaterials\WireframeHighlight.shader" />
     <None Include="Assets\MiscTextures\Terrain\grass_1024Shader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

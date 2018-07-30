@@ -29,6 +29,7 @@ public class PlayerInputScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		// Check if active player
 		if (!SquaddieTurn.IsActiveSquaddie) {
 			return;
@@ -83,6 +84,6 @@ public class PlayerInputScript : MonoBehaviour {
 	{
 	}
 
-
+   
 
 }
