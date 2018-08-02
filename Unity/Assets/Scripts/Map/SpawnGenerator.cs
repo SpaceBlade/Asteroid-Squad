@@ -8,7 +8,7 @@ public class SpawnGenerator : MonoBehaviour {
     public int MaximumSpawns = 1;
     
     public bool ResetSpawn = true;
-    public string SpawnName = "Nonnamed";
+    public string SpawnName = "Unnamed";
 
     private Transform Origin;
     private BattleTurnSystem BattleTurnSystem;
@@ -19,7 +19,7 @@ public class SpawnGenerator : MonoBehaviour {
         BattleTurnSystem = mapProperties.BattleTurnSystem;
         
         Origin = GetComponentInParent<Transform>();
-        Random.seed = 12345678;
+        Random.InitState(12345678);
 
         Spawn();
 	}
@@ -45,12 +45,11 @@ public class SpawnGenerator : MonoBehaviour {
             while (generatorIndex <= MaximumSpawns)
             {
                 // Add NPC
-                Vector3 spawnOffset = new Vector3(Random.Range(0.0f, 5.0f), 15.0f, Random.Range(0.0f, 5.0f));
+                Vector3 spawnOffset = new Vector3(Random.Range(0.0f, 5.0f), 0.5f, Random.Range(0.0f, 5.0f));
                 squad[spawnIndex++] = (GameObject)Instantiate(SpawnPrefabs[Random.Range(0, SpawnPrefabs.Length - 1)], Origin.position + spawnOffset, Origin.rotation);
-                var navMeshAgent = squad[spawnIndex - 1].AddComponent<NavMeshAgent>();
-                navMeshAgent.radius = 0.5f;
-                navMeshAgent.height = 5.0f;
-                navMeshAgent.speed = 3.5f;
+
+                AddNavigation(squad[spawnIndex-1]);
+
                 generatorIndex++;
             }
 
@@ -58,5 +57,15 @@ public class SpawnGenerator : MonoBehaviour {
         }
 
         ResetSpawn = false;
+    }
+
+    private void AddNavigation(GameObject squaddie)
+    {
+        var navMeshAgent = squaddie.AddComponent<UnityEngine.AI.NavMeshAgent>();
+        navMeshAgent.agentTypeID = 0;
+        navMeshAgent.radius = 0.5f;
+        navMeshAgent.height = 2.0f;
+        navMeshAgent.speed = 7.0f;
+        navMeshAgent.stoppingDistance = 0.5f;
     }
 }

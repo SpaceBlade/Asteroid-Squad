@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FollowTarget : MonoBehaviour {
 	public SquadMemberTurn playerTurn;
-	public NavMeshAgent agent;
+	public UnityEngine.AI.NavMeshAgent agent;
 	public Transform target;
     public FindTarget targetFinder;
 
