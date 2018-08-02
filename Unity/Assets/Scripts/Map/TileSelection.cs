@@ -15,7 +15,7 @@ public class TileSelection : MonoBehaviour {
         battleTurnSystem = mapProperties.BattleTurnSystem;
         tileHighlighter.GetComponent<MeshRenderer>();
 
-        tileHighlighter.GetComponent<Material>().color = Color.red;
+        // tileHighlighter.GetComponent<Material>().color = Color.red;
 	}
 	
 	// Update is called once per frame
@@ -38,12 +38,12 @@ public class TileSelection : MonoBehaviour {
 
         if(Physics.Raycast(ray, out rayInfo))
         {
-            if(string.Compare(rayInfo.rigidbody.gameObject.tag, "SquadMate", System.StringComparison.OrdinalIgnoreCase) == 0)
+            if(string.Compare(rayInfo.transform.tag, "SquadMate", System.StringComparison.OrdinalIgnoreCase) == 0)
             {
                 var squaddie = rayInfo.rigidbody.gameObject.GetComponent<SquadMemberTurn>();
-                // squaddie.IsActiveSquaddie = true;
-                battleTurnSystem.SwitchActivePlayer(rayInfo.rigidbody.gameObject);
-                tileHighlighter.transform.position = rayInfo.rigidbody.gameObject.transform.position + Vector3.up * 10.0f;
+                squaddie.IsActiveSquaddie = true;
+                battleTurnSystem.SwitchActivePlayer(rayInfo.transform.gameObject);
+                tileHighlighter.transform.position = Vector3.up * 10.0f + rayInfo.transform.gameObject.transform.position;
 
             }
         }
@@ -54,12 +54,17 @@ public class TileSelection : MonoBehaviour {
         Ray ray = camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit rayInfo;
 
-        if (Physics.Raycast(ray, out rayInfo))
+        if (Physics.Raycast(ray, out rayInfo, 1000.0f))
         {
             var activeplayer = battleTurnSystem.GetActivePlayer();
-            var playerNavMesh = activeplayer.GetComponent<NavMeshAgent>();
-            // playerNavMesh.SetDestination(rayInfo.transform.position);
-            
+            if (activeplayer != null)
+            {
+                var playerNavMeshAgent = activeplayer.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                if (playerNavMeshAgent != null)
+                {
+                    playerNavMeshAgent.SetDestination(rayInfo.point); // rayInfo.transform.position);
+                }
+            }
         }
     }
 }

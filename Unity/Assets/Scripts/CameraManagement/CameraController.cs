@@ -30,7 +30,7 @@ public class CameraController : MonoBehaviour {
 	void LateUpdate()
 	{
 		if (TrackedPlayer != null) {
-			transform.position = TrackedPlayer.transform.position + offset;
+			transform.position = Vector3.zero + TrackedPlayer.transform.position + offset;
 		} else {
 			// Do Something
 		}
@@ -40,11 +40,19 @@ public class CameraController : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Q))
         {
-            this.gameObject.transform.Rotate(this.gameObject.transform.worldToLocalMatrix.MultiplyVector(Vector3.up), -Mathf.PI * RotationSpeed);
+            transform.Rotate(this.gameObject.transform.worldToLocalMatrix.MultiplyVector(Vector3.up), -Mathf.PI * RotationSpeed);
         }
         if (Input.GetKey(KeyCode.E))
         {
-            this.gameObject.transform.Rotate(this.gameObject.transform.worldToLocalMatrix.MultiplyVector(Vector3.up), Mathf.PI * RotationSpeed);
+            transform.Rotate(this.gameObject.transform.worldToLocalMatrix.MultiplyVector(Vector3.up), Mathf.PI * RotationSpeed);
+        }
+        if(Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(Vector3.forward * 5.0f);
+        }
+        if(Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(Vector3.back * 5.0f);
         }
     }
 }
